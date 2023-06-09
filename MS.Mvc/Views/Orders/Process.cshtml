@@ -1,0 +1,16 @@
+﻿@inject IViewLocalizer Localizer
+@model ProcessOrderViewModel
+@{
+    ViewData["Title"] = "";
+}
+
+<form asp-action="ProcessConfirmed" method="post" asp-route-id="@Model.Order.Id">
+    @if (Model.CanProcess)
+    {
+        <button class="btn btn-success form-control" type="submit">@Localizer["Process"]</button>
+    }
+    else
+    {
+        <div>@Localizer["Can't process otrder"]</div>
+    }
+</form>

@@ -1,0 +1,61 @@
+﻿@inject IViewLocalizer Localizer
+@model OrderListViewModel
+@{
+    ViewData["Title"] = "";
+    string GetElementsString(IEnumerable<OrderElement> elements)
+    {
+        var strings = elements.Select(element => "'" + element.Product.Name + "'" + " x " + element.Count + element.Product.MeasurementUnitAbbreviation);
+
+        return string.Join('\n', strings);
+    }
+}
+@Model.Selector
+<div class="row mb-2">
+    <div class="col-4">
+        <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.Processing">
+            @Localizer["Processing"]
+        </a>
+    </div>
+    <div class="col-4">
+        <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.GoingTo">
+            @Localizer["Going to"]
+        </a>
+    </div>
+    <div class="col-4">
+        <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.Completed">
+            @Localizer["Completed"]
+        </a>
+    </div>
+</div>
+<div class="row">
+    @foreach (var order in Model.Orders ?? Array.Empty<Order>())
+    {
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div>@order.CreationDate</div>
+                            <div>@order.Address</div>
+                            <div>@order.Status</div>
+                            <div class="text-muted">@order.Comments</div>
+                        </div>
+                        <div class="col-6">
+                            <div>@GetElementsString(order.Elements)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @if (order.Status == Order.ProcessingStatus)
+                    {
+                        <a class="btn btn-success form-control" asp-action="Process" asp-route-id="@order.Id">@Localizer["Process"]</a>
+                    }
+                    else if (order.Status == Order.GoingToStatus)
+                    {
+                        <a class="btn btn-success form-control" asp-action="Deliver" asp-route-id="@order.Id">@Localizer["Deliver"]</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

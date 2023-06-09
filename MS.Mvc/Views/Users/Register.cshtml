@@ -1,0 +1,24 @@
+﻿@inject IViewLocalizer Localizer
+@model UserRegisterViewModel
+@{
+    ViewData["Title"] = "";
+}
+<form asp-controller="Users" asp-action="Register" method="post">
+    <div class="form-group mb-2">
+        <label class="form-label">@Localizer["Email"]:</label>
+        <input class="form-control" asp-for="Email" autocomplete="username" />
+    </div>
+    <div class="form-group mb-2">
+        <label class="form-label">@Localizer["Password"]:</label>
+        <input class="form-control" asp-for="Password" autocomplete="new-password" />
+    </div>
+    <div class="form-group mb-2">
+        <label class="form-label">@Localizer["Confirm password"]:</label>
+        <input class="form-control" asp-for="PasswordConfirmation" autocomplete="new-password" />
+    </div>
+    <div class="form-group mb-2">
+        <button class="btn btn-primary form-control">
+            @Localizer["Register"]
+        </button>
+    </div>
+</form>

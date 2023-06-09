@@ -1,0 +1,44 @@
+﻿@inject IViewLocalizer Localizer
+@model Order
+@{
+    ViewData["Title"] = "";
+}
+<div class="h2 text-center">
+    @Localizer["Create order"]
+</div>
+<div class="row g-2 justify-content-center">
+    @foreach (var element in Model.Elements)
+    {
+        <div class="col-12 col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-7">
+                            <div>@element.Product.Name</div>
+                            <div>@element.Count @element.Product.MeasurementUnitAbbreviation</div>
+                        </div>
+                        <div class="col-5">
+                            <div class="row justify-content-evenly">
+                                <div class="col-6">
+                                    <a class="btn btn-success form-control" asp-action="EditElement" asp-route-id="@element.Id">@Localizer["Change"]</a>
+                                </div>
+                                <div class="col-6">
+                                    <form asp-action="RemoveElement" asp-route-id="@element.ProductId" method="post">
+                                        <button class="btn btn-danger form-control">@Localizer["Remove"]</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="col-12 col-md-7">
+        <a class="btn btn-primary form-control mt-3" asp-action="AddElement">@Localizer["Add product"]</a>
+    </div>
+    <div class="col-12 col-md-7">
+        <a class="btn btn-success form-control mt-4" asp-action="Complete" asp-route-id="@Model.Id">@Localizer["Create"]</a>
+    </div>
+</div>
+

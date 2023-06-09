@@ -1,0 +1,37 @@
+﻿@inject IViewLocalizer Localizer
+@model ProductListViewModel
+@{
+    ViewData["Title"] = "";
+}
+<div class="row g-2 justify-content-center">
+
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-12 col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <div class="h5">@product.Name</div>
+                    <div class="text-muted">@Localizer["At stock:"] @product.QuantityAtStock @product.MeasurementUnitAbbreviation</div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <form asp-action="Delete" asp-route-id="@product.Id" method="post">
+                                <button class="btn btn-danger form-control" type="submit">
+                                    @Localizer["Delete"]
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-6">
+                            <a class="btn btn-success form-control" asp-action="Edit" asp-route-id="@product.Id">
+                                @Localizer["Edit"]
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    }
+</div>

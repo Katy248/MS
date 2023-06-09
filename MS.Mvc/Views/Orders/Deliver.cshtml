@@ -1,0 +1,9 @@
+﻿@inject IViewLocalizer Localizer
+@model Order
+
+@{
+    ViewData["Title"] = "";
+}
+<form asp-action="DeliverConfirmed" method="post" asp-route-id="@Model.Id">
+    <button class="btn btn-success form-control" type="submit">@Localizer["Deliver"]</button>
+</form>
