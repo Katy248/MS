@@ -2,8 +2,8 @@
 @model Order
 
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "Доставка";
 }
 <form asp-action="DeliverConfirmed" method="post" asp-route-id="@Model.Id">
-    <button class="btn btn-success form-control" type="submit">@Localizer["Deliver"]</button>
+    <button class="btn btn-success form-control" type="submit">Доставить</button>
 </form>

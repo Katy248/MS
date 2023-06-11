@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using MS.Mvc.Interfaces.Managers;
 using MS.Mvc.Models;
 using MS.Mvc.ViewModels;
 
@@ -11,11 +12,13 @@ public class UsersController : Controller
 {
     private readonly UserManager<MSUser> _userManager;
     private readonly SignInManager<MSUser> _signInManager;
+    private readonly IOrderManager _orderManager;
 
-    public UsersController(UserManager<MSUser> userManager, SignInManager<MSUser> signInManager)
+    public UsersController(UserManager<MSUser> userManager, SignInManager<MSUser> signInManager, IOrderManager orderManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _orderManager = orderManager;
     }
     public async Task<IActionResult> Register() => View();
     public async Task<IActionResult> Login() => View();
@@ -48,5 +51,10 @@ public class UsersController : Controller
         //var user = new MSUser { Email = model.Email, UserName = model.Email };
 
         return RedirectToAction(controllerName: "Home", actionName: "Index");
+    }
+    public async Task<IActionResult> OrderHistory ()
+    {
+        var orders = await _orderManager.GetUserOrders(User);
+        return View(orders);
     }
 }

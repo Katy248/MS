@@ -7,10 +7,10 @@
 <form asp-action="ProcessConfirmed" method="post" asp-route-id="@Model.Order.Id">
     @if (Model.CanProcess)
     {
-        <button class="btn btn-success form-control" type="submit">@Localizer["Process"]</button>
+        <button class="btn btn-success form-control" type="submit">Обработать</button>
     }
     else
     {
-        <div>@Localizer["Can't process otrder"]</div>
+        <div>@Localizer["Не могу обработать отправку"]</div>
     }
 </form>

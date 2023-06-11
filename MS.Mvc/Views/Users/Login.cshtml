@@ -1,24 +1,24 @@
 ﻿@inject IViewLocalizer Localizer
 @model UserLoginViewModel
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "Войти";
 }
 <form asp-controller="Users" asp-action="Login" method="post">
     <div class="form-group mb-2">
-        <label class="form-label">@Localizer["Email"]:</label>
-        <input class="form-control" asp-for="Email" autocomplete="username" />
+        <label class="form-label">Почта</label>
+        <input class="form-control" type="email" asp-for="Email" autocomplete="username" />
     </div>
     <div class="form-group mb-2">
-        <label class="form-label">@Localizer["Password"]:</label>
-        <input class="form-control" asp-for="Password" autocomplete="new-password" />
+        <label class="form-label">Пароль:</label>
+        <input class="form-control" asp-for="Password" type="password" autocomplete="new-password" />
     </div>
     <div class="form-check mb-2">
         <input class="form-check-input" id="rememberme" asp-for="RememberMe" />
-        <label class="form-check-label" for="rememberme">@Localizer["Remember me"]</label>
+        <label class="form-check-label" for="rememberme">Запомнить меня</label>
     </div>
     <div class="form-group mb-2">
         <button class="btn btn-primary form-control">
-            @Localizer["Login"]
+           Логин
         </button>
     </div>
 </form>
