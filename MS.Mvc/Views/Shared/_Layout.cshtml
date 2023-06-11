@@ -1,4 +1,7 @@
-﻿@inject IViewLocalizer Localizer
+﻿@using Microsoft.AspNetCore.Identity;
+@inject IViewLocalizer Localizer
+@inject SignInManager<MSUser> signIn
+@inject UserManager<MSUser> userManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,24 +22,31 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Домашняя страница</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="All">Список заказов</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="">Домашняя страница</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Домашняя страница</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Домашняя страница</a>
-                        </li>
-
-                    </ul>
+                    @if (signIn.IsSignedIn(User))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                        @{var user = await userManager.GetUserAsync(User);}
+                        @if(user.IsEmployee)
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="All">Список заказов</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Manage">Админ панель</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="OrderHistory">История заказов</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Create">Создание заказа</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    
                     
                     <partial name="_LoginPartial" />
                 </div>

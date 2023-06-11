@@ -1,0 +1,28 @@
+﻿@using MS.Mvc.Models
+@using MS.Mvc.ViewModels
+@model IEnumerable<Order>
+
+
+<div class="col-12 col-xl-4">
+    <div class="row g-3">
+        <div class="col-12">
+            <div class="h2 mb-4 text-center">
+                История заказов:
+            </div>
+        </div>
+
+        @foreach (var orders in Model)
+        {
+            <div class="col-12">
+                <a class="card card-button text-decoration-none" asp-controller="Forms" asp-action="Edit" asp-route-id="@orders.Id">
+                    <div class="card-body">
+                        <div class="card-title h5 text-overflow-ellipsis">@orders.Comments</div>
+                        <div class="card-title h5 text-overflow-ellipsis">@orders.Status</div>
+                        <div class="card-title h5 text-overflow-ellipsis">@orders.CreationDate</div>
+                    </div>
+                </a>
+            </div>
+
+        }
+    </div>
+</div>
