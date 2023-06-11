@@ -13,17 +13,22 @@
 <div class="row mb-2">
     <div class="col-4">
         <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.Processing">
-            @Localizer["Processing"]
+            Обработка
         </a>
     </div>
     <div class="col-4">
         <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.GoingTo">
-            @Localizer["Going to"]
+            Отправить в
         </a>
     </div>
     <div class="col-4">
         <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.Completed">
-            @Localizer["Completed"]
+            Выполнено
+        </a>
+    </div>
+    <div class="col-4">
+        <a class="btn btn-outline-secondary form-control" asp-action="Create" asp-route-selector="">
+            Создать
         </a>
     </div>
 </div>
@@ -48,11 +53,11 @@
                 <div class="card-footer">
                     @if (order.Status == Order.ProcessingStatus)
                     {
-                        <a class="btn btn-success form-control" asp-action="Process" asp-route-id="@order.Id">@Localizer["Process"]</a>
+                        <a class="btn btn-success form-control" asp-action="Process" asp-route-id="@order.Id">Выполнение</a>
                     }
                     else if (order.Status == Order.GoingToStatus)
                     {
-                        <a class="btn btn-success form-control" asp-action="Deliver" asp-route-id="@order.Id">@Localizer["Deliver"]</a>
+                        <a class="btn btn-success form-control" asp-action="Deliver" asp-route-id="@order.Id">Доставщик</a>
                     }
                 </div>
             </div>
