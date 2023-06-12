@@ -1,0 +1,19 @@
+﻿@inject IViewLocalizer Localizer
+@model OrderHistoryViewModel
+@{
+    ViewData["Title"] = "";
+}
+<div class="row">
+    @foreach (var order in Model.Orders)
+    {
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div>@order.CreationDate</div>
+                    <div>@order.Comments</div>
+                    <div>@order.Address</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
