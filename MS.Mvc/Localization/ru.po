@@ -1,0 +1,121 @@
+msgid "MS"
+msgstr "МС"
+
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
+
+#
+# Base operations
+#
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Change"
+msgstr "Поменять"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Delete"
+msgstr "Удалить"
+
+
+
+
+
+msgid "Processing"
+msgstr "Обрабатывается"
+
+msgid "Going to"
+msgstr "Доставляется"
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "Process"
+msgstr "Обработать"
+
+msgid "Deliver"
+msgstr "Доставить"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Comment"
+msgstr "Комментарий"
+
+msgid "Create order"
+msgstr "Создать заказ"
+
+msgid "Add product"
+msgstr "Добавить товар"
+
+msgid "Can't process order"
+msgstr "Невозможно обработать заказ"
+
+# Наименование товара
+msgid "Name"
+msgstr "Наименование"
+
+msgid "Measurement unit"
+msgstr "Единица измерения"
+
+msgid "Measurement unit abbreviation"
+msgstr "Единица измерения (аббревиатура)"
+
+msgid "At stock:"
+msgstr "На складе:"
+
+#
+# Layout
+#
+
+msgid "Order list"
+msgstr "Список заказов"
+
+msgid "Manage users"
+msgstr "Управление пользователями"
+
+msgid "Order history"
+msgstr "История заказов"
+
+#
+# Users
+#
+
+msgid "User name"
+msgstr "Имя пользователя"
+
+msgid "Is employee"
+msgstr "Является сотрудником"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Confirm password"
+msgstr "Подтвердите пароль"
+
+msgid "Login"
+msgstr "Войти"
+
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+msgid "Logout"
+msgstr "Выйти"
+
+msgid "Remember me"
+msgstr "Запомнить меня"
+
+msgid "User"
+msgstr "Пользователь"

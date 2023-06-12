@@ -1,11 +1,14 @@
 # MS
-
 ## Installation
 
-```
-	dotnet ef database update
+Update database with following command:
+
+```sh
+dotnet ef database update
 ```
 
-```
-	dotnet run
+Run app^
+
+```sh
+dotnet run
 ```
