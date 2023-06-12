@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MS.Mvc.Interfaces.Managers;
 using MS.Mvc.ViewModels;
 
 namespace MS.Mvc.Controllers;
 
+[Authorize]
 public class ProductsController : Controller
 {
     private readonly IProductManager _productManager;

@@ -2,9 +2,11 @@
 using MS.Mvc.Interfaces.Managers;
 using MS.Mvc.ViewModels;
 using MS.Mvc.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MS.Mvc.Controllers;
 
+[Authorize]
 public class OrdersController : Controller
 {
     private readonly IOrderManager _orderManager;

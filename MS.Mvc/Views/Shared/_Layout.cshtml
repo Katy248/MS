@@ -1,10 +1,12 @@
-﻿@inject IViewLocalizer Localizer
+﻿@using Microsoft.AspNetCore.Identity;
+@inject IViewLocalizer Localizer
+@inject SignInManager<MSUser> SignIn
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MS.Mvc</title>
+    <title>@ViewData["Title"] - @Localizer["MS"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MS.Mvc.styles.css" asp-append-version="true" />
@@ -13,21 +15,40 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MS.Mvc</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["MS"]</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    
+                    @if (SignIn.IsSignedIn(User))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            @{
+                                var user = await SignIn.UserManager.GetUserAsync(User);
+                            }
+                            @if (user.IsEmployee)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="All">@Localizer["Order list"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Manage">@Localizer["Manage users"]</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="OrderHistory">@Localizer["Order history"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Create">@Localizer["Create order"]</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -41,7 +62,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - MS.Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - @Localizer["MS"]
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

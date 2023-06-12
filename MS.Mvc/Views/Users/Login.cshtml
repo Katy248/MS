@@ -6,11 +6,11 @@
 <form asp-controller="Users" asp-action="Login" method="post">
     <div class="form-group mb-2">
         <label class="form-label">@Localizer["Email"]:</label>
-        <input class="form-control" asp-for="Email" autocomplete="username" />
+        <input class="form-control" asp-for="Email" type="email" autocomplete="username" />
     </div>
     <div class="form-group mb-2">
         <label class="form-label">@Localizer["Password"]:</label>
-        <input class="form-control" asp-for="Password" autocomplete="new-password" />
+        <input class="form-control" asp-for="Password" type="password" autocomplete="password" />
     </div>
     <div class="form-check mb-2">
         <input class="form-check-input" id="rememberme" asp-for="RememberMe" />

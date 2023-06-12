@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -52,18 +53,21 @@ public class UsersController : Controller
 
         return RedirectToAction(controllerName: "Home", actionName: "Index");
     }
+    [Authorize]
     public async Task<IActionResult> OrderHistory()
     {
         var orders = await _orderManager.GetUserOrders(User);
         var model = new OrderHistoryViewModel { Orders = orders, User = await _userManager.GetUserAsync(User) };
         return View(model);
     }
+    [Authorize]
     public async Task<IActionResult> Manage()
     {
         var users = await _userManager.Users.ToArrayAsync();
 
         return View(users);
     }
+    [Authorize]
     public async Task<IActionResult> Edit(string id)
     {
         var user = await _userManager.Users.FirstOrDefaultAsync(user => user.Id == id);
