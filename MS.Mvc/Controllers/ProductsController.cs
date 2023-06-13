@@ -37,7 +37,13 @@ public class ProductsController : Controller
         if (product is null)
             return RedirectToAction(nameof(Index));
 
-        var model = new EditProductViewModel { Id = id, Name = product.Name };
+        var model = new EditProductViewModel 
+        { 
+            Id = id, 
+            Name = product.Name, 
+            MeasurementUnit = product.MeasurementUnit,
+            MeasurementUnitAbbreviation = product.MeasurementUnitAbbreviation,
+        };
         return View(model);
     }
     [HttpPost]
@@ -54,6 +60,27 @@ public class ProductsController : Controller
     public async Task<IActionResult> Delete(string id)
     {
         await _productManager.Delete(id);
+        return RedirectToAction(nameof(Index));
+    }
+    public async Task<IActionResult> ChangeQuantity(string id)
+    {
+        var product = await _productManager.GetById(id);
+        var model = new ChangeQuantityProductViewModel 
+        { 
+            Id = id, 
+            ChangeAmount = 0 ,
+            Product = product
+        };
+        return View(model);
+    }
+    [HttpPost]
+    public async Task<IActionResult> ChangeQuantity([Bind] ChangeQuantityProductViewModel model)
+    {
+        if (!ModelState.IsValid)
+            return View(model);
+
+        await _productManager.ChangeQuantity(model.Id, model.ChangeAmount);
+
         return RedirectToAction(nameof(Index));
     }
 }

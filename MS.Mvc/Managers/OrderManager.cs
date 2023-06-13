@@ -69,6 +69,7 @@ public class OrderManager : IOrderManager
     {
         var orders = await GetOrders()
             .Where(order => order.UserId == GetUserId(user))
+            .Where(order => !string.IsNullOrWhiteSpace(order.Status))
             .ToListAsync(cancellationToken);
         return orders;
     }

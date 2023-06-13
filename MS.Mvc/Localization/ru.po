@@ -11,6 +11,9 @@ msgstr "Добро пожаловать!"
 msgid "Add"
 msgstr "Добавить"
 
+msgid "Edit"
+msgstr "Редактировать"
+
 msgid "Change"
 msgstr "Поменять"
 
@@ -73,6 +76,12 @@ msgstr "Единица измерения (аббревиатура)"
 msgid "At stock:"
 msgstr "На складе:"
 
+msgid "Add products"
+msgstr "Добавить товаров"
+
+msgid "Change quantity"
+msgstr "Изменить количество"
+
 #
 # Layout
 #
@@ -85,6 +94,12 @@ msgstr "Управление пользователями"
 
 msgid "Order history"
 msgstr "История заказов"
+
+msgid "Products"
+msgstr "Товары"
+
+msgid "Create product"
+msgstr "Создать товар"
 
 #
 # Users
