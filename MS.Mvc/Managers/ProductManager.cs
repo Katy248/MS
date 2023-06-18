@@ -34,18 +34,19 @@ public class ProductManager : IProductManager
     }
     public async Task<bool> CanChangeQuantity(string productId, int change, CancellationToken cancellationToken = default)
     {
-        var product = await _context.Products.FirstOrDefaultAsync(product => product.Id == productId, cancellationToken);
+        var product = await GetProduct(productId, cancellationToken);
 
         if (product is null)
             return false;
-        if (change < 0 && product.QuantityAtStock > Math.Abs(change))
+        if (change < 0 && product.QuantityAtStock <= Math.Abs(change))
             return false;
 
         return true;
     }
     public async Task<Product?> GetProduct(string id, CancellationToken cancellationToken = default)
     {
-        var product = await _context.Products.FirstOrDefaultAsync(product => product.Id == id, cancellationToken);
+        var product = await _context.Products
+            .FirstOrDefaultAsync(product => product.Id == id, cancellationToken);
 
         return product;
     }
