@@ -5,6 +5,10 @@
 }
 <form asp-action="ChangeQuantity" method="post">
     <input asp-for="Id" hidden/>
+    <input asp-for="Product.Id" hidden/>
+    <input asp-for="Product.Name" hidden/>
+    <input asp-for="Product.MeasurementUnit" hidden/>
+    <input asp-for="Product.MeasurementUnitAbbreviation" hidden/>
 
     <div class="form-group mb-2">
         <label class="form-label">@Localizer["Add products"]</label>
