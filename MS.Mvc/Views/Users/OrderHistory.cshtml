@@ -3,16 +3,41 @@
 @{
     ViewData["Title"] = "";
 }
-<div class="row">
+<div class="row g-3 justify-content-center">
     @foreach (var order in Model.Orders.OrderByDescending(order => order.CreationDate))
     {
-        <div class="col">
+        <div class="col-12 col-xl-7">
             <div class="card">
                 <div class="card-body">
                     <div>@order.ItemsString("x")</div>
                     <div>@order.CreationDate.ToShortDateString()</div>
-                    <div>@order.Comments</div>
-                    <div>@order.Address</div>
+                    <div>@Localizer["Address"]: @order.Address</div>
+                    @if (!string.IsNullOrWhiteSpace(order.Comments))
+                    {
+                    <div class="text-muted">@Localizer["Comment"]: @order.Comments</div>
+                        
+                    }
+                    <div class="">
+                        @if (order.Status == Order.ProcessingStatus)
+                        {
+                            <div class="text-primary">
+                                @Localizer["Processing"]
+                            </div>
+                        }
+                        else if (order.Status == Order.GoingToStatus)
+                        {
+                            <div class="text-warning">
+                                @Localizer["Going to"]
+                            </div>
+                        }
+                        else if (order.Status == Order.CompletedStatus)
+                        {
+                            <div class="text-success">
+
+                                @Localizer["Completed"]
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

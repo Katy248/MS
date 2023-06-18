@@ -3,39 +3,66 @@
 @{
     ViewData["Title"] = Localizer["Orders"];
 }
-<div class="display-4 text-center mb-4">
-    @Localizer["Orders"]
-</div>
+    <div class="display-4 text-center mb-4">
+        @Localizer["Orders"]
+    </div>
 
-<div class="row mb-2">
-    <div class="col-4">
-        <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.Processing">
+
+<div class="row mb-4 justify-content-center">
+    <div class="col-4 col-xl-2">
+        <a class="btn @(Model.Selector == OrderSelector.Processing ? "btn-primary" : "btn-outline-primary") form-control" asp-action="All" asp-route-selector="@OrderSelector.Processing">
             @Localizer["Processing"]
         </a>
     </div>
-    <div class="col-4">
-        <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.GoingTo">
+    <div class="col-4 col-xl-2">
+        <a class="btn @(Model.Selector == OrderSelector.GoingTo ? "btn-warning" : "btn-outline-warning") form-control" asp-action="All" asp-route-selector="@OrderSelector.GoingTo">
             @Localizer["Going to"]
         </a>
     </div>
-    <div class="col-4">
-        <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.Completed">
+    <div class="col-4 col-xl-2">
+        <a class="btn @(Model.Selector == OrderSelector.Completed ? "btn-success" : "btn-outline-success") form-control" asp-action="All" asp-route-selector="@OrderSelector.Completed">
             @Localizer["Completed"]
         </a>
     </div>
+    <div class="col-4 col-xl-1">
+        <a class="btn btn-outline-danger form-control @(Model.Selector == OrderSelector.Uncompleted ? "disabled" : "")" asp-action="All">
+            @Localizer["×"]
+        </a>
+    </div>
 </div>
-<div class="row">
+<div class="row g-3 justify-content-center">
     @foreach (var order in Model.Orders ?? Array.Empty<Order>())
     {
-        <div class="col-12">
+        <div class="col-12 col-xl-7">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
                             <div>@order.CreationDate</div>
                             <div>@order.Address</div>
-                            <div>@order.Status</div>
+                            
                             <div class="text-muted">@order.Comments</div>
+                            @*<div class="">
+                                @if (order.Status == Order.ProcessingStatus)
+                                {
+                                    <div class="text-primary">
+                                        @Localizer["Processing"]
+                                    </div>
+                                }
+                                else if (order.Status == Order.GoingToStatus)
+                                {
+                                    <div class="text-warning">
+                                        @Localizer["Going to"]
+                                    </div>
+                                }
+                                else if (order.Status == Order.CompletedStatus)
+                                {
+                                    <div class="text-success">
+
+                                        @Localizer["Completed"]
+                                    </div>
+                                }
+                            </div>*@
                         </div>
                         <div class="col-6">
                             <div>@order.ItemsString("x")</div>
@@ -45,11 +72,11 @@
                 <div class="card-footer">
                     @if (order.Status == Order.ProcessingStatus)
                     {
-                        <a class="btn btn-success form-control" asp-action="Process" asp-route-id="@order.Id">@Localizer["Process"]</a>
+                        <a class="btn btn-primary form-control" asp-action="Process" asp-route-id="@order.Id">@Localizer["Process"]</a>
                     }
                     else if (order.Status == Order.GoingToStatus)
                     {
-                        <a class="btn btn-success form-control" asp-action="Deliver" asp-route-id="@order.Id">@Localizer["Deliver"]</a>
+                        <a class="btn btn-warning form-control" asp-action="Deliver" asp-route-id="@order.Id">@Localizer["Deliver"]</a>
                     }
                 </div>
             </div>

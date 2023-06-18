@@ -1,9 +1,9 @@
 ﻿@inject IViewLocalizer Localizer
 @model Order
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] = @Localizer["Create order"];
 }
-<div class="h2 text-center">
+<div class="display-4 text-center mb-4">
     @Localizer["Create order"]
 </div>
 <div class="row g-2 justify-content-center">
