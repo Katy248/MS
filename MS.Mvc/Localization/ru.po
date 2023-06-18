@@ -82,6 +82,9 @@ msgstr "Добавить товаров"
 msgid "Change quantity"
 msgstr "Изменить количество"
 
+msgid "Orders"
+msgstr "Заказы"
+
 #
 # Layout
 #

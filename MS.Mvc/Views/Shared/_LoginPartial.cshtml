@@ -3,25 +3,25 @@
 @inject SignInManager<MSUser> SignInManager
 @inject UserManager<MSUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="list-group list-group-horizontal">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@Localizer["User"]: @User.Identity?.Name</a>
+        <li class="list-group-item">
+            <a class="nav-link btn" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@Localizer["User"]: @User.Identity?.Name</a>
         </li>
-        <li class="nav-item">
+        <li class="list-group-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">@Localizer["Logout"]</button>
+                <button type="submit" class="nav-link btn link-danger">@Localizer["Logout"]</button>
             </form>
         </li>
     }
     else
     {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Users" asp-action="Login">@Localizer["Login"]</a>
+        <li class="list-group-item">
+            <a class="nav-link" asp-controller="Users" asp-action="Login">@Localizer["Login"]</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Users" asp-action="Register">@Localizer["Register"]</a>
+        <li class="list-group-item">
+            <a class="nav-link" asp-controller="Users" asp-action="Register">@Localizer["Register"]</a>
         </li>
     }
 </ul>

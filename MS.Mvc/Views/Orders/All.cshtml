@@ -1,15 +1,12 @@
 ﻿@inject IViewLocalizer Localizer
 @model OrderListViewModel
 @{
-    ViewData["Title"] = "";
-    string GetElementsString(IEnumerable<OrderElement> elements)
-    {
-        var strings = elements.Select(element => "'" + element.Product.Name + "'" + " x " + element.Count + element.Product.MeasurementUnitAbbreviation);
-
-        return string.Join('\n', strings);
-    }
+    ViewData["Title"] = Localizer["Orders"];
 }
-@Model.Selector
+<div class="display-4 text-center mb-4">
+    @Localizer["Orders"]
+</div>
+
 <div class="row mb-2">
     <div class="col-4">
         <a class="btn btn-outline-secondary form-control" asp-action="All" asp-route-selector="@OrderSelector.Processing">
