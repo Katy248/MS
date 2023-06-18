@@ -4,12 +4,13 @@
     ViewData["Title"] = "";
 }
 <div class="row">
-    @foreach (var order in Model.Orders)
+    @foreach (var order in Model.Orders.OrderByDescending(order => order.CreationDate))
     {
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <div>@order.CreationDate</div>
+                    <div>@order.ItemsString("x")</div>
+                    <div>@order.CreationDate.ToShortDateString()</div>
                     <div>@order.Comments</div>
                     <div>@order.Address</div>
                 </div>

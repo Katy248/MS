@@ -1,4 +1,6 @@
-﻿namespace MS.Mvc.Models;
+﻿using System.Xml.Linq;
+
+namespace MS.Mvc.Models;
 
 public class Order
 {
@@ -16,4 +18,11 @@ public class Order
     public const string GoingToStatus = "Going to";
     public const string CompletedStatus = "Completed";
 
+    public string ItemsString(string separator)
+    {
+        var strings = Elements
+            .Select(element => "'" + element.Product.Name + "'" + $" {separator} " + element.Count + element.Product.MeasurementUnitAbbreviation);
+
+        return string.Join('\n', strings);
+    }
 }
