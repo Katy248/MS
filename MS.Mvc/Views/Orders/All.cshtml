@@ -9,28 +9,34 @@
 
 
 <div class="row mb-4 justify-content-center">
-    <div class="col-4 col-xl-2">
-        <a class="btn @(Model.Selector == OrderSelector.Processing ? "btn-primary" : "btn-outline-primary") form-control" asp-action="All" asp-route-selector="@OrderSelector.Processing">
-            @Localizer["Processing"]
-        </a>
-    </div>
-    <div class="col-4 col-xl-2">
-        <a class="btn @(Model.Selector == OrderSelector.GoingTo ? "btn-warning" : "btn-outline-warning") form-control" asp-action="All" asp-route-selector="@OrderSelector.GoingTo">
-            @Localizer["Going to"]
-        </a>
-    </div>
-    <div class="col-4 col-xl-2">
-        <a class="btn @(Model.Selector == OrderSelector.Completed ? "btn-success" : "btn-outline-success") form-control" asp-action="All" asp-route-selector="@OrderSelector.Completed">
-            @Localizer["Completed"]
-        </a>
-    </div>
-    <div class="col-4 col-xl-1">
-        <a class="btn btn-outline-danger form-control @(Model.Selector == OrderSelector.Uncompleted ? "disabled" : "")" asp-action="All">
-            @Localizer["×"]
-        </a>
-    </div>
+    
 </div>
 <div class="row g-3 justify-content-center">
+    <div class="col-12 col-xl-7">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item @(Model.Selector == OrderSelector.Processing ? "list-group-item-primary" : "")">
+                <a class="nav-link" asp-action="All" asp-route-selector="@OrderSelector.Processing">
+                    @Localizer["Processing"]
+                </a>
+            </li>
+            <li class="list-group-item @(Model.Selector == OrderSelector.GoingTo ? "list-group-item-warning" : "")">
+                <a class="nav-link text-warning" asp-action="All" asp-route-selector="@OrderSelector.GoingTo">
+                    @Localizer["Going to"]
+                </a>
+            </li>
+            <li class="list-group-item @(Model.Selector == OrderSelector.Completed ? "list-group-item-success" : "")">
+                <a class="nav-link link-success" asp-action="All" asp-route-selector="@OrderSelector.Completed">
+                    @Localizer["Completed"]
+                </a>
+            </li>
+            <li class="list-group-item @(Model.Selector == OrderSelector.Uncompleted ? "list-group-item-danger" : "")">
+                <a class="nav-link link-danger text-capitalize fw-bolder" asp-action="All">
+                    @Localizer["×"]
+                </a>
+            </li>
+        </ul>
+        
+    </div>
     @foreach (var order in Model.Orders ?? Array.Empty<Order>())
     {
         <div class="col-12 col-xl-7">
