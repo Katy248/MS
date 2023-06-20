@@ -7,11 +7,11 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="list-group-item">
-            <a class="nav-link btn" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@Localizer["User"]: @User.Identity?.Name</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@Localizer["User"]: @User.Identity?.Name</a>
         </li>
         <li class="list-group-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn link-danger">@Localizer["Logout"]</button>
+            <form class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="btn nav-link text-danger">@Localizer["Logout"]</button>
             </form>
         </li>
     }

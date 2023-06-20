@@ -35,7 +35,12 @@ public class UsersController : Controller
             UserName = model.Email,
             Email = model.Email,
         };
-        await _userManager.CreateAsync(user, model.Password);
+        var result = await _userManager.CreateAsync(user, model.Password);
+
+        if (result.Succeeded)
+        {
+            await _signInManager.SignInAsync(user, false);
+        }
 
         return RedirectToAction(controllerName: "Home", actionName: "Index");
     }
